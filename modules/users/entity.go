@@ -1,7 +1,7 @@
 package users
 
 type User struct {
-	Id       int64  `json:"id"`
-	Username string `xorm:"not null unique 'usr_name'" json:"username" `
-	Hash     string `json:"-"`
+	Id       int64  `xorm:"id" json:"id"`
+	Username string `xorm:"username" json:"username" `
+	Hash     string `xorm:"hash" json:"-"`
 }
