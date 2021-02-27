@@ -9,6 +9,7 @@ const name = "user"
 // Routes init user
 func Routes(routes iris.Party) {
 	route := routes.Party(name)
-	route.Get("/", GetUsers)
-	route.Post("/", CreateUser)
+	route.Get("/", getUsers)
+	route.Post("/", createUser)
+	route.Post("/login", loginUser)
 }

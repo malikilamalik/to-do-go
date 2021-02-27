@@ -14,7 +14,7 @@ type Postgres struct {
 
 func dbConfig() string {
 	return fmt.Sprintf(
-		"dbname=%s user=%s password=%s host=%s port=%s sslmode=%s",
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 		StringEnvVariable("DB_HOST"),
 		StringEnvVariable("DB_PORT"),
 		StringEnvVariable("DB_USER"),
