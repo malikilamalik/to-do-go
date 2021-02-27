@@ -3,8 +3,8 @@ package config
 import (
 	"fmt"
 	"log"
-	"os"
 
+	_ "github.com/lib/pq"
 	"xorm.io/xorm"
 )
 
@@ -15,19 +15,19 @@ type Postgres struct {
 func dbConfig() string {
 	return fmt.Sprintf(
 		"dbname=%s user=%s password=%s host=%s port=%s sslmode=%s",
-		os.Getenv("DB_DATABASE"),
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PORT"),
-		os.Getenv("DB_SSLMODE"),
+		StringEnvVariable("DB_HOST"),
+		StringEnvVariable("DB_PORT"),
+		StringEnvVariable("DB_USER"),
+		StringEnvVariable("DB_PASSWORD"),
+		StringEnvVariable("DB_DATABASE"),
+		StringEnvVariable("DB_SSLMODE"),
 	)
 }
 
 func InitDatabase() (db *Postgres, err error) {
-	dbconn, _ := xorm.NewEngine("postgres", dbConfig())
+	dbconn, err := xorm.NewEngine("postgres", dbConfig())
 	if err != nil {
-		log.Panicf("Failed to connect to database")
+		log.Println("engine creation failed", err)
 	}
 	return &Postgres{dbconn}, nil
 }

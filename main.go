@@ -1,13 +1,15 @@
 package main
 
 import (
-	"to-do-go/modules/users"
+	"to-do-go/config"
+	"to-do-go/server"
 
 	"github.com/kataras/iris/v12"
 )
 
 func main() {
 	app := iris.New()
-	users.Routes(app)
+	config.InitDatabase()
+	server.SetupRoutes(app)
 	app.Listen(":1997")
 }
