@@ -8,9 +8,9 @@ import (
 )
 
 // GenerateToken generates a jwt token
-func (j *JwtWrapper) GenerateToken(username string) (signedToken string, err error) {
+func (j *JwtWrapper) GenerateToken(id int64) (signedToken string, err error) {
 	claims := &JwtClaim{
-		Username: username,
+		Id: id,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Local().Add(time.Hour * time.Duration(j.ExpirationHours)).Unix(),
 			Issuer:    j.Issuer,

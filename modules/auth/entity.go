@@ -13,7 +13,7 @@ type JwtWrapper struct {
 }
 
 type JwtClaim struct {
-	Username string
+	Id int64
 	jwt.StandardClaims
 }
 

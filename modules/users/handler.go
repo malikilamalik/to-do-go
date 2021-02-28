@@ -1,7 +1,6 @@
 package users
 
 import (
-	"fmt"
 	"to-do-go/config"
 	"to-do-go/modules/auth"
 
@@ -27,7 +26,6 @@ func getUsers(c iris.Context) {
 func createUser(c iris.Context) {
 	var body Request
 	var user User
-	fmt.Println(body.Username)
 	err := c.ReadJSON(&body)
 
 	if err != nil {
@@ -37,6 +35,7 @@ func createUser(c iris.Context) {
 		})
 		return
 	}
+
 	if result, _ := FindByUsername(body.Username); len(result) > 0 {
 		c.StatusCode(iris.StatusBadRequest)
 		c.JSON(iris.Map{
@@ -55,7 +54,9 @@ func createUser(c iris.Context) {
 		return
 	}
 	c.StatusCode(iris.StatusCreated)
-	c.JSON(user)
+	c.JSON(iris.Map{
+		"message": "User Created",
+	})
 	return
 }
 
@@ -86,7 +87,7 @@ func loginUser(c iris.Context) {
 	authorized, _ := config.ComparePasswordAndHash(body.Password, userArray[0].Hash)
 	if authorized {
 
-		signedToken, err := auth.Wrapper.GenerateToken(body.Password)
+		signedToken, err := auth.Wrapper.GenerateToken(userArray[0].Id)
 
 		if err != nil {
 			c.StatusCode(iris.StatusInternalServerError)

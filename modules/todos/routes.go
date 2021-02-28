@@ -1,7 +1,7 @@
 package todos
 
 import (
-	"fmt"
+	"to-do-go/middlewares"
 
 	"github.com/kataras/iris/v12"
 )
@@ -11,5 +11,12 @@ const name = "todo"
 // Routes init user
 func Routes(routes iris.Party) {
 	route := routes.Party(name)
-	fmt.Println(route)
+	route.Use(middlewares.Authorization())
+	route.Get("/", getTasks)
+	route.Get("/", getTaskByTaskId)
+	route.Get("/status", getTaskByTaskStatus)
+	route.Post("/new", createTask)
+	route.Delete("/delete", deleteTask)
+	route.Put("/status/finish", taskFinish)
+	route.Put("/status/ongoing", taskOngoing)
 }
