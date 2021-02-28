@@ -48,7 +48,7 @@ func getTaskByTaskId(c iris.Context) {
 }
 
 func getTaskByTaskStatus(c iris.Context) {
-	todos, err := GetTaskByStatus(c.URLParam("task_status"))
+	todos, err := GetTaskByStatus(c.URLParam("task_status"), c.GetCookie("id"))
 	if err != nil {
 		c.StatusCode(iris.StatusInternalServerError)
 		c.JSON(iris.Map{

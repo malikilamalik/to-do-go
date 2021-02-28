@@ -13,7 +13,7 @@ func Routes(routes iris.Party) {
 	route := routes.Party(name)
 	route.Use(middlewares.Authorization())
 	route.Get("/", getTasks)
-	route.Get("/", getTaskByTaskId)
+	route.Get("/task", getTaskByTaskId)
 	route.Get("/status", getTaskByTaskStatus)
 	route.Post("/new", createTask)
 	route.Delete("/delete", deleteTask)

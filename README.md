@@ -2,5 +2,5 @@
 TO-DO APP with GO
 
 #### API Documentation
-https://named-haven-306215.et.r.appspot.com/v1/api
+https://documenter.getpostman.com/view/5995808/TWDdiYsS
 

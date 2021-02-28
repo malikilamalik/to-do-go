@@ -29,10 +29,10 @@ func GetTaskById(task_id string) ([]Todo, error) {
 	return todos, nil
 }
 
-func GetTaskByStatus(status string) ([]Todo, error) {
+func GetTaskByStatus(status string, user_id string) ([]Todo, error) {
 	var todos []Todo
 	db, _ := config.InitDatabase()
-	err := db.Where("status = ?", status).Find(&todos)
+	err := db.Where("status = ?", status).Where("user_id = ?", user_id).Find(&todos)
 	if err != nil {
 		return nil, err
 	}
