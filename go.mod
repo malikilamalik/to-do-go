@@ -4,8 +4,8 @@ go 1.15
 
 require (
 	github.com/ajg/form v1.5.1 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fasthttp-contrib/websocket v0.0.0-20160511215533-1f3b11f56072 // indirect
-	github.com/go-playground/validator/v10 v10.4.1
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/joho/godotenv v1.3.0
